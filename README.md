@@ -29,7 +29,7 @@ graph TD
     Daily Hive Metrics")]
 
     %% Consumption
-    Gold -->|Query| PBI["Power BI / Dashboard"]
+    Gold -->|Query| PBI["Power BI / Dashboard"] 
 
 1.  **Ingestion (ADF):** Azure Data Factory orchestrates data movement from on-premise CSV sensors and external APIs (BrightSky) into the Data Lake.
 2.  **Storage (ADLS Gen2):**

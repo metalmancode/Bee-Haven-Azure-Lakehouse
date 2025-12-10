@@ -3,7 +3,7 @@
 ## Project Overview
 Bee Haven is a scalable cloud data solution designed to monitor bee health and environmental factors. By integrating hive telemetry (Weight, Flow, Temperature) with external weather APIs, this system enables precision agriculture analytics to support colony survival rates.
 
-## Architecture
+
 ## Architecture
 
 The solution follows a **Medallion Architecture** pattern, orchestrated by Azure Data Factory.

@@ -28,9 +28,16 @@ graph TD
     Synapse2 -->|Join & Aggregate| Gold[("ADLS Gen2 (Gold)
     Daily Hive Metrics")]
 
-    %% Consumption
-    Gold -->|Query| PBI["Power BI / Dashboard"] 
+    %% Machine Learning
+    Gold -->|Train| ML[("Azure Machine Learning
+    Train Model")]
+    ML -->|Deploy| Endpoint[("Online Endpoint
+    Predict Honey Yield")]
 
+    %% Consumption
+    Gold -->|Query| PBI["Power BI / Dashboard"]
+    Endpoint -->|Inference| App["Beekeeper App"]
+```
 1.  **Ingestion (ADF):** Azure Data Factory orchestrates data movement from on-premise CSV sensors and external APIs (BrightSky) into the Data Lake.
 2.  **Storage (ADLS Gen2):**
     * **Bronze Layer:** Raw CSV and JSON data.

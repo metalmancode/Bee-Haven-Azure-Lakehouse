@@ -11,25 +11,25 @@ The solution follows a **Medallion Architecture** pattern, orchestrated by Azure
 ```mermaid
 graph TD
     %% Sources
-    Sensors[Hive Sensors (CSV)] -->|Ingest| ADF{Azure Data Factory}
-    API[BrightSky Weather API] -->|Ingest| ADF
+    Sensors["Hive Sensors (CSV)"] -->|Ingest| ADF{Azure Data Factory}
+    API["BrightSky Weather API"] -->|Ingest| ADF
 
     %% Ingestion
     ADF -->|Copy Data| Bronze[("ADLS Gen2 (Bronze)
     Raw Data")]
 
     %% Silver Transformation
-    Bronze -->|Read| Synapse1[Synapse Notebook: Cleaning]
+    Bronze -->|Read| Synapse1["Synapse Notebook: Cleaning"]
     Synapse1 -->|Write Parquet| Silver[("ADLS Gen2 (Silver)
     Cleaned & Harmonized")]
 
     %% Gold Transformation
-    Silver -->|Read| Synapse2[Synapse Notebook: Aggregation]
+    Silver -->|Read| Synapse2["Synapse Notebook: Aggregation"]
     Synapse2 -->|Join & Aggregate| Gold[("ADLS Gen2 (Gold)
     Daily Hive Metrics")]
 
     %% Consumption
-    Gold -->|Query| PBI[Power BI / Dashboard]
+    Gold -->|Query| PBI["Power BI / Dashboard"]
 
 1.  **Ingestion (ADF):** Azure Data Factory orchestrates data movement from on-premise CSV sensors and external APIs (BrightSky) into the Data Lake.
 2.  **Storage (ADLS Gen2):**
